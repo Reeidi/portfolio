@@ -1,0 +1,57 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+* {
+  transition-property: all;
+  transition-timing-function: var(
+    --tw-ease,
+    var(--default-transition-timing-function)
+  );
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+  --tw-duration: 200ms;
+  transition-duration: 200ms;
+}
+
+@theme {
+  --breakpoint-xxs: 21.25rem; /* COMMENT: 340px */
+  --breakpoint-xs: 23.125rem; /* COMMENT: 363px */
+  --breakpoint-xxl: 82.5rem; /* COMMENT: 1320px */
+  --color-background: #000000;
+  --color-text-light: #000000;
+  --color-primary: #000000; 
+  --color-primary-dark: #000000;
+  --color-primary-dark2: #000000;
+  --color-soft-white: #f0f1f3;
+}
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  --color-background: #d2ddd3;
+  --color-text-light: #e9ffdd;
+  --color-primary: #6c9a6f;
+  --color-primary-dark: #547256;
+  --color-primary-dark2: #547256;
+}
+
+.btn-primary {
+  @apply border-0 text-white bg-primary hover:bg-primary-dark transition-all duration-500;
+}
+
+body {
+  font-family: "Bagnard Sans", sans-serif;
+}
+
+body>div#root {
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+}
+
+.content {
+  @apply max-xxl:w-full xxl:max-w-[1320px] xxl:mx-auto;
+}
+
+.section-title {
+  @apply md:font-semibold text-3xl sm:text-4xl md:text-5xl font-medium;
+}

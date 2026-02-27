@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+.background-frame {
+  background-origin: border-box;
+  @apply bg-no-repeat bg-center bg-size-[100%_100%];
+}
+
+.center {
+  @apply flex justify-center items-center;
+}

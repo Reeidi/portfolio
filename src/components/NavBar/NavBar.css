@@ -1,0 +1,28 @@
+.navbar a {
+    display: flex;
+    gap: 0;
+    /* font-size: large; */
+}
+
+.navbar a:hover {
+    background-color: unset;
+}
+
+.navbar a > svg {
+    opacity: 0%;
+    display: none;
+}
+
+.navbar a > svg.tag {
+    display: block;
+}
+
+.navbar a:hover > svg.tag {
+    opacity: 100%;
+    display: block;
+}
+
+.navbar .active-link svg {
+    opacity: 100%;
+    display: block;
+}

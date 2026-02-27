@@ -1,0 +1,15 @@
+.link-decoration {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: "round";
+  stroke-miterlimit: 10;
+  stroke-width: 2.5px;
+}
+
+.link-decoration2 {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: "round";
+  stroke-miterlimit: 10;
+  stroke-width: 2.5px;
+}
