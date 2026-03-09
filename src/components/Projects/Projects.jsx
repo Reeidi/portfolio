@@ -6,7 +6,7 @@ import card5 from "../../assets/images/brochure&others/heinz_3d_pr.png";
 import card6 from "../../assets/images/site/website_art_school_2.jpg";
 import ProjectCard from "./ProjectCard";
 import ProjectsFilter from "./ProjectsFilter";
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 
 const projectData = [
   {
@@ -74,27 +74,62 @@ const projectData = [
 export default function Projects() {
 
   const [filter, setFilter] = useState('');
-  const [visibleProjectIds, setVisibleProjectIds] = useState(() =>
-    projectData.map(project => project.id)
-  );
+  const cardRefs = useRef(new Map());
+  const previousPositionsRef = useRef(new Map());
 
   const filteredProjects = projectData.filter(
     element => element.filterId === filter || filter === ''
   );
 
+  function saveCurrentCardPositions() {
+    const positions = new Map();
+
+    cardRefs.current.forEach((cardElement, projectId) => {
+      positions.set(projectId, cardElement.getBoundingClientRect());
+    });
+
+    previousPositionsRef.current = positions;
+  }
+
   function onFilterButtonPressed(categoryFilter) {
     const nextFilter = filter === categoryFilter ? '' : categoryFilter;
-
-    setVisibleProjectIds([]);
+    saveCurrentCardPositions();
     setFilter(nextFilter);
-
-    requestAnimationFrame(() => {
-      const nextFilteredProjects = projectData.filter(
-        element => element.filterId === nextFilter || nextFilter === ''
-      );
-      setVisibleProjectIds(nextFilteredProjects.map(project => project.id));
-    });
   }
+
+  useLayoutEffect(() => {
+    cardRefs.current.forEach((cardElement, projectId) => {
+      const previousPosition = previousPositionsRef.current.get(projectId);
+      const currentPosition = cardElement.getBoundingClientRect();
+
+      if (previousPosition) {
+        const deltaX = previousPosition.left - currentPosition.left;
+        const deltaY = previousPosition.top - currentPosition.top;
+
+        if (deltaX || deltaY) {
+          cardElement.style.transition = "none";
+          cardElement.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+
+          requestAnimationFrame(() => {
+            cardElement.style.transition = "transform 420ms ease";
+            cardElement.style.transform = "translate(0, 0)";
+          });
+        }
+      } else {
+        cardElement.style.transition = "none";
+        cardElement.style.opacity = "0";
+        cardElement.style.transform = "translateY(18px) scale(0.98)";
+
+        requestAnimationFrame(() => {
+          cardElement.style.transition = "transform 420ms ease, opacity 320ms ease";
+          cardElement.style.opacity = "1";
+          cardElement.style.transform = "translateY(0) scale(1)";
+        });
+      }
+    });
+
+    previousPositionsRef.current = new Map();
+  }, [filter]);
 
   return (
     <div
@@ -116,12 +151,20 @@ export default function Projects() {
       <div className="mx-auto flex justify-center">
         <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-6">
           {filteredProjects.map((data, index) => (
-            <ProjectCard
-              data={data}
+            <div
               key={data.id}
-              isVisible={visibleProjectIds.includes(data.id)}
-              delayMs={index * 70}
-            />
+              ref={(element) => {
+                if (element) {
+                  cardRefs.current.set(data.id, element);
+                } else {
+                  cardRefs.current.delete(data.id);
+                }
+              }}
+              style={{ transitionDelay: `${index * 45}ms` }}
+              className="will-change-transform"
+            >
+              <ProjectCard data={data} />
+            </div>
           ))}
         </div>
       </div>
