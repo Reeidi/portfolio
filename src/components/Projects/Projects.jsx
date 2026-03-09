@@ -74,14 +74,26 @@ const projectData = [
 export default function Projects() {
 
   const [filter, setFilter] = useState('');
+  const [visibleProjectIds, setVisibleProjectIds] = useState(() =>
+    projectData.map(project => project.id)
+  );
+
+  const filteredProjects = projectData.filter(
+    element => element.filterId === filter || filter === ''
+  );
 
   function onFilterButtonPressed(categoryFilter) {
-    console.log(categoryFilter);
-    if (filter === categoryFilter) {
-      setFilter('');
-    } else {
-      setFilter(categoryFilter)
-    }
+    const nextFilter = filter === categoryFilter ? '' : categoryFilter;
+
+    setVisibleProjectIds([]);
+    setFilter(nextFilter);
+
+    requestAnimationFrame(() => {
+      const nextFilteredProjects = projectData.filter(
+        element => element.filterId === nextFilter || nextFilter === ''
+      );
+      setVisibleProjectIds(nextFilteredProjects.map(project => project.id));
+    });
   }
 
   return (
@@ -103,10 +115,13 @@ export default function Projects() {
 
       <div className="mx-auto flex justify-center">
         <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-6">
-          {projectData
-            .filter(element => element.filterId === filter || filter === '')
-            .map((data, index) => (
-            <ProjectCard data={data} key={index} />
+          {filteredProjects.map((data, index) => (
+            <ProjectCard
+              data={data}
+              key={data.id}
+              isVisible={visibleProjectIds.includes(data.id)}
+              delayMs={index * 70}
+            />
           ))}
         </div>
       </div>

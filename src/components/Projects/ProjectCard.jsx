@@ -1,6 +1,9 @@
-export default function ProjectCard({ data }) {
+export default function ProjectCard({ data, isVisible = true, delayMs = 0 }) {
     return (
-        <div className="max-w-106 rounded-lg outline-[#FFFFFF] hover:shadow-2xl duration-300 transition-all shadow-gray-300 border border-gray-200">
+        <div
+            style={{ transitionDelay: `${delayMs}ms` }}
+            className={`max-w-106 rounded-lg outline-[#FFFFFF] hover:shadow-2xl duration-300 transition-all shadow-gray-300 border border-gray-200 transform ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
+        >
             <div className="h-70 flex items-center">
                 <img src={data?.image} alt={`${data?.title} image`} className="max-h-70 min-w-70 mx-auto" />
             </div>
