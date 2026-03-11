@@ -1,8 +1,27 @@
 @import "tailwindcss";
 
-.background-frame {
-  background-origin: border-box;
-  @apply bg-no-repeat bg-center bg-size-[100%_100%];
+.about-frame {
+  @apply bg-none;
+}
+
+@media (min-width: 48rem) {
+  .about-frame {
+    background-image: url("../../assets/images/laptop_screen.svg");
+    background-origin: border-box;
+    @apply bg-no-repeat bg-center bg-size-[100%_100%];
+  }
+}
+
+.about-photo-frame {
+  border: 7px solid #1f2937;
+  border-radius: 2.2rem;
+}
+
+@media (min-width: 48rem) {
+  .about-photo-frame {
+    border: 0;
+    border-radius: 0.75rem;
+  }
 }
 
 .center {
