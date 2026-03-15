@@ -68,8 +68,17 @@ export default function NavBar() {
         } z-50 transition-all duration-1000`}
     >
       <div className="navbar flex justify-between mx-auto content my-0">
-        <div className="flex items-center justify-between">
-          <div className="dropdown">
+        <div className="flex w-full items-center justify-between lg:w-auto">
+          <Link
+            href="#about"
+            to={`about`}
+            smooth={true}
+            duration={900}
+          >
+            <img src={logo} className="h-8 sm:h-14" alt="logo" />
+          </Link>
+
+          <div className="dropdown lg:hidden">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -88,20 +97,11 @@ export default function NavBar() {
             </div>
             <ul
               tabIndex={0}
-              className={`menu menu-lg dropdown-content rounded-box z-1 mt-3 w-lvw p-2 shadow font-semibold flex-nowrap bg-white text-black`}
+              className={`menu menu-lg dropdown-content rounded-box right-0 z-1 mt-3 w-lvw p-2 shadow font-semibold flex-nowrap bg-white text-black`}
             >
               {menu}
             </ul>
           </div>
-
-          <Link
-            href="#about"
-            to={`about`}
-            smooth={true}
-            duration={900}
-          >
-            <img src={logo} className="h-8 sm:h-14" alt="logo" />
-          </Link>
         </div>
 
         <div className="md:flex items-center">
