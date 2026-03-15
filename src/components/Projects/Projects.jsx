@@ -133,7 +133,7 @@ export default function Projects() {
 
   return (
     <div
-      className="content mt-10 md:mt-15 xl:mt-25 mb-10 md:mb-25 max-xxl:p-2"
+      className="content mt-10 md:mt-15 xl:mt-25 mb-10 md:mb-25 max-xxl:p-2 bg-white"
       id="projects"
     >
       <div className="xl:mb-3 mb-5">
@@ -161,7 +161,7 @@ export default function Projects() {
                 }
               }}
               style={{ transitionDelay: `${index * 45}ms` }}
-              className="will-change-transform"
+              className="will-change-transform h-full"
             >
               <ProjectCard data={data} />
             </div>

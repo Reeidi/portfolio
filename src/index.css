@@ -1,5 +1,7 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+}
 
 * {
   transition-property: all;
@@ -16,22 +18,46 @@
   --breakpoint-xxs: 21.25rem; /* COMMENT: 340px */
   --breakpoint-xs: 23.125rem; /* COMMENT: 363px */
   --breakpoint-xxl: 82.5rem; /* COMMENT: 1320px */
-  --color-background: #000000;
-  --color-text-light: #000000;
-  --color-primary: #000000; 
-  --color-primary-dark: #000000;
-  --color-primary-dark2: #000000;
-  --color-soft-white: #f0f1f3;
-}
-
-@plugin "daisyui/theme" {
-  name: "light";
-  default: true;
   --color-background: #d2ddd3;
   --color-text-light: #e9ffdd;
   --color-primary: #6c9a6f;
   --color-primary-dark: #547256;
   --color-primary-dark2: #547256;
+  --color-soft-white: #f0f1f3;
+}
+
+/* Explicit theme variables override DaisyUI's built-in blue fallback. */
+:root,
+[data-theme="light"] {
+  --color-background: #d2ddd3;
+  --color-text-light: #e9ffdd;
+  --color-primary: #6c9a6f;
+  --color-primary-content: #ffffff;
+  --color-primary-dark: #547256;
+  --color-primary-dark2: #547256;
+  --color-soft-white: #f0f1f3;
+}
+
+[data-theme="dark"] {
+  --color-background: #d2ddd3;
+  --color-text-light: #e9ffdd;
+  --color-primary: #6c9a6f;
+  --color-primary-content: #ffffff;
+  --color-primary-dark: #547256;
+  --color-primary-dark2: #547256;
+  --color-soft-white: #f0f1f3;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --color-background: #d2ddd3;
+    --color-text-light: #e9ffdd;
+    --color-primary: #6c9a6f;
+    --color-primary-content: #ffffff;
+    --color-primary-dark: #547256;
+    --color-primary-dark2: #547256;
+    --color-soft-white: #f0f1f3;
+  }
 }
 
 .btn-primary {
@@ -40,6 +66,8 @@
 
 body {
   font-family: "Bagnard Sans", sans-serif;
+  background-color: var(--color-soft-white);
+  color: var(--color-black);
 }
 
 body>div#root {

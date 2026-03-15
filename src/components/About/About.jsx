@@ -33,7 +33,7 @@ export default function About() {
             </div>
 
             <div className="md:hidden -mt-6 px-4 pb-4 text-center">
-              <h2 className="text-2xl xxs:text-3xl font-semibold mb-4">Hi, I'm Radost!</h2>
+              <h2 className="text-2xl xxs:text-3xl font-semibold text-black mb-4">Hi, I'm Radost!</h2>
               <p className="text-sm xxs:text-base text-gray-600">
                 I create websites and digital interfaces with a focus on clean design and a seamless user experience.
                 I combine UI/UX work in Figma with front-end development to turn ideas into modern, functional solutions
@@ -65,7 +65,7 @@ export default function About() {
 
           <div className="hidden md:block max-sm:w-full w-132">
             <h2
-              className={`text-2xl xxs:text-3xl sm:text-4xl lg:text-[38px] text-[min(24px,38px)] max-md:text-center font-semibold mb-8`}
+              className={`text-2xl xxs:text-3xl sm:text-4xl lg:text-[38px] text-[min(24px,38px)] max-md:text-center font-semibold text-black mb-8`}
             >
               Hi, I'm Radost!
             </h2>
