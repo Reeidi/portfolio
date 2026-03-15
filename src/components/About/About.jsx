@@ -9,9 +9,9 @@ export default function About() {
   return (
     <div
       id="about"
-      className="">
+      className="px-4 xxl:px-0">
       <div
-        className={`about-frame content relative mx-4 xxl:mx-0.5 -bottom-10 lg:-bottom-18 z-10 rounded-3xl bg-white drop-shadow-2xl max-xl:mb-5 shadow-white xl:p-36 lg:p-20 md:p-16 sm:p-10 p-4`}
+        className={`about-frame content relative xxl:mx-0.5 -bottom-10 lg:-bottom-18 z-10 rounded-3xl bg-white drop-shadow-2xl max-xl:mb-5 shadow-white xl:p-36 lg:p-20 md:p-16 sm:p-10 p-4`}
       >
         <div className="flex max-md:flex-col justify-center items-center gap-6">
 
@@ -38,7 +38,7 @@ export default function About() {
                 I create websites and digital interfaces with a focus on clean design and a seamless user experience.
                 I combine UI/UX work in Figma with front-end development to turn ideas into modern, functional solutions
               </p>
-              <div className="mt-5 flex justify-center gap-2">
+              <div className="mt-5 flex flex-wrap justify-center gap-2">
                 <Link
                   to={'projects'}
                   smooth={true}
