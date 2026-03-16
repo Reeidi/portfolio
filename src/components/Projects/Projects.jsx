@@ -133,7 +133,7 @@ export default function Projects() {
 
   return (
     <div
-      className="content mt-10 md:mt-15 xl:mt-25 mb-10 md:mb-25 max-xxl:p-2 bg-white"
+      className="content mt-10 md:mt-15 xl:mt-25 mb-10 md:mb-25 max-xxl:p-2"
       id="projects"
     >
       <div className="xl:mb-3 mb-5">

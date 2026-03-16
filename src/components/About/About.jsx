@@ -11,7 +11,7 @@ export default function About() {
       id="about"
       className="px-4 xxl:px-0">
       <div
-        className={`about-frame content relative xxl:mx-0.5 -bottom-10 lg:-bottom-18 z-10 rounded-3xl bg-white drop-shadow-2xl max-xl:mb-5 shadow-white xl:p-36 lg:p-20 md:p-16 sm:p-10 p-4`}
+        className={`about-frame content relative xxl:mx-0.5 -bottom-10 lg:-bottom-18 z-10 rounded-3xl drop-shadow-2xl max-xl:mb-5 shadow-white xl:p-36 lg:p-20 md:p-16 sm:p-10 p-4`}
       >
         <div className="flex max-md:flex-col justify-center items-center gap-6">
 
