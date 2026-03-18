@@ -1,6 +1,11 @@
-export default function ProjectCard({ data }) {
+export default function ProjectCard({ data, onOpen }) {
     return (
-        <div className="max-w-106 h-full rounded-lg bg-white outline-[#FFFFFF] hover:shadow-2xl duration-300 transition-all shadow-gray-300 border border-gray-200 flex flex-col">
+        <button
+            type="button"
+            onClick={() => onOpen(data)}
+            className="max-w-106 h-full w-full rounded-lg bg-white outline-[#FFFFFF] hover:shadow-2xl duration-300 transition-all shadow-gray-300 border border-gray-200 flex flex-col text-left cursor-pointer overflow-hidden"
+            aria-label={`Open details for ${data?.title}`}
+        >
             <div className="h-70 flex items-center">
                 <img src={data?.image} alt={`${data?.title} image`} className="max-h-70 min-w-70 mx-auto" />
             </div>
@@ -17,6 +22,6 @@ export default function ProjectCard({ data }) {
                     {data?.description}
                 </p>
             </div>
-        </div>
+        </button>
     );
 };

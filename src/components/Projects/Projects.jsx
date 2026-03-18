@@ -6,7 +6,8 @@ import card5 from "../../assets/images/brochure&others/heinz_3d_pr.png";
 import card6 from "../../assets/images/site/website_art_school_2.jpg";
 import ProjectCard from "./ProjectCard";
 import ProjectsFilter from "./ProjectsFilter";
-import { useLayoutEffect, useRef, useState } from "react";
+import ProjectModal from "./ProjectModal";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 const projectData = [
   {
@@ -74,6 +75,7 @@ const projectData = [
 export default function Projects() {
 
   const [filter, setFilter] = useState('');
+  const [selectedProject, setSelectedProject] = useState(null);
   const cardRefs = useRef(new Map());
   const previousPositionsRef = useRef(new Map());
 
@@ -131,9 +133,31 @@ export default function Projects() {
     previousPositionsRef.current = new Map();
   }, [filter]);
 
+  useEffect(() => {
+    if (!selectedProject) {
+      return undefined;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    function handleKeyDown(event) {
+      if (event.key === "Escape") {
+        setSelectedProject(null);
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedProject]);
+
   return (
     <div
-      className="content mt-10 md:mt-15 xl:mt-25 mb-10 md:mb-25 max-xxl:p-2"
+      className="content mt-10 md:mt-15 xl:mt-25 mb-10 md:mb-25 max-xxl:p-2 bg-gray-100 rounded-3xl py-10 md:py-14"
       id="projects"
     >
       <div className="xl:mb-3 mb-5">
@@ -163,11 +187,16 @@ export default function Projects() {
               style={{ transitionDelay: `${index * 45}ms` }}
               className="will-change-transform h-full"
             >
-              <ProjectCard data={data} />
+              <ProjectCard data={data} onOpen={setSelectedProject} />
             </div>
           ))}
         </div>
       </div>
+
+      <ProjectModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
     </div>
   );
 };
